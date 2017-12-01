@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../question';
 
 @Component({
   selector: 'app-chatbot',
@@ -8,6 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class ChatbotComponent implements OnInit {
 
   constructor() { }
+
+  question: Question = {
+    asked: '',
+    answer: ''
+  }
 
   ngOnInit() {
   }
