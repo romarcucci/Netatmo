@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('netatmo App', () => {
+describe('testsass App', () => {
   let page: AppPage;
 
   beforeEach(() => {
