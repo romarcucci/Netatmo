@@ -8,14 +8,31 @@ import { Question } from '../question';
 })
 export class ChatbotComponent implements OnInit {
 
-  constructor() { }
+  searchString = '';
 
+  questions = [];
+  
   question: Question = {
     asked: '',
     answer: ''
   }
 
+  constructor() {}
+
   ngOnInit() {
   }
 
+  searchQuestions(){
+    console.log(this.searchString);
+  }
+
+  saveQuestion(){
+    this.question.answer = 'no';
+    this.questions.push({
+      asked: this.question.asked,
+      answer: this.question.answer
+    });
+    this.question.asked = '';
+    this.question.answer = '';
+  }
 }
