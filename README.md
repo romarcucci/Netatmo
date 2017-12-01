@@ -1,27 +1,49 @@
-# Netatmo
+La machine à question
+=============
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+Le sujet
+------
 
-## Development server
+Le but de cet exercice est de faire une "intelligence artificielle" à qui on va pouvoir poser des questions et qui vas nous répondre par _oui_ ou _non_.
+Cette "IA" sera en réalitée très limitée car elle répondra aléatoirement. Pour rajouter un peu de fun, on ne va pas utiliser Math.rand, mais une API tierce fournie par https://yesno.wtf/#api.
+La doc de cette api très simpliste se suffit à elle même, mais juste pour résumer, cette api permet de récupérer une réponse aléatoire yes/no et une url d'un fichier .gif qui image cette réponse.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Le wireframe
+-----
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Concernant la maquette que je te donne en copie, voici quelques explications :
+ * en bas se trouve un input pour que l'utilisateur pose sa question,
+ * au dessus de l'input se trouve la liste des questions deja posées par l'utilisateur avec l'image correspondant à la réponse de l'IA,
+ * en haut à droite, une barre de recherche qui va filtrer les questions en fonction du texte de la question,
+ * en haut à gauche se trouve un slider qui lui va filtrer les questions en fonction de la réponse,
+ * pas besoin d'avoir de mémoire persistante des questions. Un rafraichissement de la page vide la liste des questions.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Les contraintes
+------
 
-## Running unit tests
+Pour cet exercice, on attend de toi que tu utilises :
+ * Un framework JS récent (Vue, Angular, Ember, React etc).
+ * Un préprocesseur CSS.
+ * Le slider en haut à gauche doit être fait à la main, pas le droit d'utiliser de framework de composant déjà tout fait.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Ce que je vais regarder dans le résultat
+-----------
+ * L'organisation du code
+ * La propreté du code, qui comprend entre autre :
+    - le nommage des fonctions et des variables,
+    - la présence (ou l'absence) de commentaires,
+    - la consistance des indentations et du formatage du code (je t'invite à choisir une coding style et à t'y tenir sur tout le projet),
+    - le découpage du code et l'absence de code dupliqué
+ * Le niveau d'utilisation des technologies proposées
+ * La simplicité d'utilisation de l'application
+ * La cohérence du design
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+N'hésites pas à rajouter des fonctionnalités de ton cru dans l'application si tu as du temps en plus.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Ce que je ne vais pas trop regarder dans le résultat
+--------
+ * La beauté du design
+ * La compatibilité multi-browser
