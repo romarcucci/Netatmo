@@ -1,8 +1,7 @@
 <input [(ngModel)]="searchString" placeholder="Recherche" (keyup)="searchQuestions()"/>
 <ul>
-  <li *ngFor="let q of questions">
-    <span>{{q.asked}} </span>
-    <span>{{q.answer}}</span>
+  <li *ngFor="let q of displayedQuestions">
+    <span>{{q.asked}} {{q.answer}}</span>
   </li>
 </ul>
 <input [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()"/>

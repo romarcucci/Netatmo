@@ -10,7 +10,8 @@ export class ChatbotComponent implements OnInit {
 
   searchString = '';
 
-  questions = [];
+  allQuestions = [];
+  displayedQuestions = [];
   
   question: Question = {
     asked: '',
@@ -24,14 +25,21 @@ export class ChatbotComponent implements OnInit {
 
   searchQuestions(){
     console.log(this.searchString);
+    this.displayedQuestions = [];
+    this.allQuestions.forEach(element => {
+      if(element.asked.includes(this.searchString)){
+        this.displayedQuestions.push(element);
+      }
+    });
   }
 
   saveQuestion(){
     this.question.answer = 'no';
-    this.questions.push({
+    this.allQuestions.push({
       asked: this.question.asked,
       answer: this.question.answer
     });
+    this.searchQuestions();
     this.question.asked = '';
     this.question.answer = '';
   }
