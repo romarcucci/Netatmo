@@ -3,13 +3,12 @@ Yes<input type="radio" [(ngModel)]="searchAnswer" value="yes">
 <input type="radio" [(ngModel)]="searchAnswer" value="no">No
 <input [(ngModel)]="searchString" placeholder="Recherche" (keyup)="searchQuestions()"/>
 
-<h1>searchAnswer: {{searchAnswer}}</h1>
-
 <ul>
   <div *ngFor="let q of displayedQuestions">
     <div [hidden]="!(searchAnswer === 'all' || searchAnswer === q.answer)">
       <li>
-        <span>{{q.asked}} {{q.answer}}</span>
+        <span>{{q.asked}}</span>
+        <img src="{{q.image}}" width=75px height=50px alt="">
       </li>
     </div>
   </div>

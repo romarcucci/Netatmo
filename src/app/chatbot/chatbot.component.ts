@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Question } from '../question';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-chatbot',
@@ -7,49 +9,68 @@ import { Question } from '../question';
   styleUrls: ['./chatbot.component.sass']
 })
 export class ChatbotComponent implements OnInit {
+ 
+  constructor(private http: Http) {}
 
   searchString = '';
   searchAnswer = 'all';
 
   allQuestions = [];
   displayedQuestions = [];
-  
+
   question: Question = {
     asked: '',
-    answer: ''
+    answer: '',
+    image: '',
   }
 
-  constructor() {}
-
-  ngOnInit() {
+  ngOnInit(){
   }
 
   searchQuestions(){
     this.displayedQuestions = [];
+
     this.allQuestions.forEach(element => {
       if(element.asked.includes(this.searchString)){
         this.displayedQuestions.push(element);
       }
     });
-    this.question.asked = '';
-    this.question.answer = '';
   }
 
   saveQuestion(){
     if(this.question.asked !== ''){
-      this.searchString = '';
-      this.searchAnswer = 'all';
-      if(Math.random()<0.5)
-        this.question.answer = 'yes';
-      else
-        this.question.answer = 'no';
+      
+      this.getAnswer();
+
       this.allQuestions.push({
         asked: this.question.asked,
-        answer: this.question.answer
+        answer: this.question.answer,
+        image: this.question.image
       });
+
+      console.log(this.allQuestions);
+
+      this.searchString = '';
+      this.searchAnswer = 'all';
+
       this.searchQuestions();
-      this.question.asked = '';
-      this.question.answer = '';
+      
+      this.question = {
+        asked: '',
+        answer: '',
+        image: ''
+      }
     }
+  }
+
+  getAnswer(){
+    this.http.get('https://yesno.wtf/api').subscribe(
+      (res: Response) => {
+        const ans = res.json();
+        this.question.answer = ans.answer;
+        this.question.image = ans.image;
+      }
+    );
+    return true;
   }
 }
