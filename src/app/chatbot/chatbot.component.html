@@ -14,4 +14,4 @@ Yes<input type="radio" [(ngModel)]="searchAnswer" value="yes">
   </div>
 </ul>
 
-<input [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()"/>
+<input [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()" autofocus/>

@@ -10,7 +10,9 @@ import 'rxjs/add/operator/map';
 })
 export class ChatbotComponent implements OnInit {
  
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.getAnswer();
+  }
 
   searchString = '';
   searchAnswer = 'all';
@@ -48,8 +50,6 @@ export class ChatbotComponent implements OnInit {
         image: this.question.image
       });
 
-      console.log(this.allQuestions);
-
       this.searchString = '';
       this.searchAnswer = 'all';
 
@@ -71,6 +71,5 @@ export class ChatbotComponent implements OnInit {
         this.question.image = ans.image;
       }
     );
-    return true;
   }
 }
