@@ -31,13 +31,18 @@ export class ChatbotComponent implements OnInit {
         this.displayedQuestions.push(element);
       }
     });
+    this.question.asked = '';
+    this.question.answer = '';
   }
 
   saveQuestion(){
     if(this.question.asked !== ''){
       this.searchString = '';
       this.searchAnswer = 'all';
-      this.question.answer = 'no';
+      if(Math.random()<0.5)
+        this.question.answer = 'yes';
+      else
+        this.question.answer = 'no';
       this.allQuestions.push({
         asked: this.question.asked,
         answer: this.question.answer

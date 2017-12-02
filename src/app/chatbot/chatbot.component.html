@@ -1,7 +1,18 @@
+Yes<input type="radio" [(ngModel)]="searchAnswer" value="yes">
+<input type="radio" [(ngModel)]="searchAnswer" value="all">
+<input type="radio" [(ngModel)]="searchAnswer" value="no">No
 <input [(ngModel)]="searchString" placeholder="Recherche" (keyup)="searchQuestions()"/>
+
+<h1>searchAnswer: {{searchAnswer}}</h1>
+
 <ul>
-  <li *ngFor="let q of displayedQuestions">
-    <span>{{q.asked}} {{q.answer}}</span>
-  </li>
+  <div *ngFor="let q of displayedQuestions">
+    <div [hidden]="!(searchAnswer === 'all' || searchAnswer === q.answer)">
+      <li>
+        <span>{{q.asked}} {{q.answer}}</span>
+      </li>
+    </div>
+  </div>
 </ul>
+
 <input [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()"/>
