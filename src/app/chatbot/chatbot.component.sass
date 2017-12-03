@@ -59,7 +59,7 @@ ul
     li
         list-style: none
         .question
-            width: 90%
+            width:  -webkit-calc(100% - 20px)
             height: 100px
             margin-top: 10px
             margin-bottom: 10px
@@ -83,8 +83,6 @@ input[type=text]
     height: 30px
     padding-left: 5px
     @include respWidth()
-
-
 
 // Media Queries
 @media screen and (max-width: $small)
