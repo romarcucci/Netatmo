@@ -15,14 +15,14 @@ export class ChatbotComponent implements OnInit {
   @ViewChild('questionsList') questionsList;
   
   stringSearch = '';
-  answerSearch = 'all';
+  answerSearch = 1;
 
   allQuestions = [];
   displayedQuestions = [];
 
-  question: Question = {
+  currentQuestion: Question = {
     asked: '',
-    answer: '',
+    answer: 1,
     image: '',
   }
 
@@ -44,29 +44,31 @@ export class ChatbotComponent implements OnInit {
   }
 
   saveQuestion(){
-    if(this.question.asked !== ''){
+    if(this.currentQuestion.asked !== ''){
       this.getAnswer();
 
       this.allQuestions.push({
-        asked: this.question.asked,
-        answer: this.question.answer,
-        image: this.question.image
+        asked: this.currentQuestion.asked,
+        answer: this.currentQuestion.answer,
+        image: this.currentQuestion.image
       });
 
+      console.log(this.currentQuestion);
+
       this.stringSearch = '';
-      this.answerSearch = 'all';
+      this.answerSearch = 1;
 
       this.searchQuestions();
 
-      this.question = {
+      this.currentQuestion = {
         asked: '',
-        answer: '',
+        answer: 1,
         image: ''
       }
       this.autoScroll();
     }
     else{
-      this.question.asked = '';
+      this.currentQuestion.asked = '';
     }
   }
 
@@ -78,8 +80,17 @@ export class ChatbotComponent implements OnInit {
     this.http.get('https://yesno.wtf/api').subscribe(
       (res: Response) => {
         const ans = res.json();
-        this.question.answer = ans.answer;
-        this.question.image = ans.image;
+        switch(ans.answer){
+          case 'yes': 
+            this.currentQuestion.answer = 0;
+            break;
+          case 'no': 
+            this.currentQuestion.answer = 2;
+            break;
+          default:
+            break; 
+        }
+        this.currentQuestion.image = ans.image;
       }
     );
   }

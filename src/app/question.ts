@@ -1,5 +1,5 @@
 export class Question {
     asked: string;
-    answer: string;
+    answer: number;
     image: string;
 }

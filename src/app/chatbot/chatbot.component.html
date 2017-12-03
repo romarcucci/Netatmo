@@ -1,16 +1,14 @@
 
 <div class="searchInputs">
   <div class="answerSearchInput">
-    All<br>Yes<input type="radio" [(ngModel)]="answerSearch" value="yes">
-    <input type="radio" [(ngModel)]="answerSearch" value="all">
-    <input type="radio" [(ngModel)]="answerSearch" value="no"> No
+    All<br>Yes<input type="range" [(ngModel)]="answerSearch" value="1" min="0" max="2"/> No
   </div>
   <input class="stringSearchInput" [(ngModel)]="stringSearch" placeholder="Recherche" (keyup)="searchQuestions()"/>
 </div>
 
 <ul #questionsList>
   <div *ngFor="let question of displayedQuestions">
-    <div [hidden]="!(answerSearch === 'all' || answerSearch === question.answer)">
+    <div [hidden]="!(answerSearch === 1 || answerSearch === question.answer)">
       <li>
         <div class="question">
           <p class="asked">{{question.asked}}</p>
@@ -22,6 +20,6 @@
 </ul>
 
 <input class="questionInput" 
-  [(ngModel)]="question.asked" 
+  [(ngModel)]="currentQuestion.asked" 
   (keydown.enter)="saveQuestion()" 
   (keyup.enter)="autoScroll()"/>
