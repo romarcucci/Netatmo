@@ -1,17 +1,19 @@
-Yes<input type="radio" [(ngModel)]="searchAnswer" value="yes">
-<input type="radio" [(ngModel)]="searchAnswer" value="all">
-<input type="radio" [(ngModel)]="searchAnswer" value="no">No
-<input [(ngModel)]="searchString" placeholder="Recherche" (keyup)="searchQuestions()"/>
+Yes<input type="radio" [(ngModel)]="answerSearch" value="yes">
+<input type="radio" [(ngModel)]="answerSearch" value="all">
+<input type="radio" [(ngModel)]="answerSearch" value="no">No
+<input [(ngModel)]="stringSearch" placeholder="Recherche" (keyup)="searchQuestions()"/>
 
-<ul>
-  <div *ngFor="let q of displayedQuestions">
-    <div [hidden]="!(searchAnswer === 'all' || searchAnswer === q.answer)">
+<ul #questionsList>
+  <div *ngFor="let question of displayedQuestions">
+    <div [hidden]="!(answerSearch === 'all' || answerSearch === question.answer)">
       <li>
-        <span>{{q.asked}}</span>
-        <img src="{{q.image}}" width=75px height=50px alt="">
+        <div class="question">
+          <p class="asked">{{question.asked}}</p>
+          <img src="{{question.image}}" alt="">
+        </div>
       </li>
     </div>
   </div>
 </ul>
 
-<input [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()" autofocus/>
+<textarea class="questionInput" rows="2" [(ngModel)]="question.asked" (keyup.enter)="saveQuestion()" autofocus></textarea>
