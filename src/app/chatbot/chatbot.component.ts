@@ -11,12 +11,9 @@ import 'rxjs/add/operator/map';
 })
 export class ChatbotComponent implements OnInit {
  
-  constructor(private http: Http) {
-    this.getAnswer();
-  }
 
   @ViewChild('questionsList') questionsList;
-
+  
   stringSearch = '';
   answerSearch = 'all';
 
@@ -27,6 +24,10 @@ export class ChatbotComponent implements OnInit {
     asked: '',
     answer: '',
     image: '',
+  }
+
+  constructor(private http: Http) {
+    this.getAnswer();
   }
 
   ngOnInit(){
@@ -43,7 +44,7 @@ export class ChatbotComponent implements OnInit {
   }
 
   saveQuestion(){
-    if(this.question.asked !== '\n'){
+    if(this.question.asked !== ''){
       this.getAnswer();
 
       this.allQuestions.push({
@@ -57,17 +58,20 @@ export class ChatbotComponent implements OnInit {
 
       this.searchQuestions();
 
-      this.questionsList.nativeElement.scrollTop = this.questionsList.nativeElement.scrollHeight;
-
       this.question = {
         asked: '',
         answer: '',
         image: ''
       }
+      this.autoScroll();
     }
     else{
       this.question.asked = '';
     }
+  }
+
+  autoScroll(){
+    this.questionsList.nativeElement.scrollTop = this.questionsList.nativeElement.scrollHeight;
   }
 
   getAnswer(){
